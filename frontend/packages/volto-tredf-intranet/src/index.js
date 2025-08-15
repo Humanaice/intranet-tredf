@@ -1,5 +1,5 @@
-import config from '@plone/volto/registry';
 import AreaView from './components/Views/AreaView';
+import './theme/main.scss';
 
 const applyConfig = (config) => {
   config.settings.isMultilingual = false;
