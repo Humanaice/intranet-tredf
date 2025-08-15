@@ -1,0 +1,14 @@
+:root {
+  --link-color: rgb(255, 0, 0) !important;
+  --link-color-hover: rgb(0, 131, 190) !important;
+}
+
+a {
+  color: var(--link-color) !important;
+  text-decoration: solid;
+
+  &:hover {
+    color: var(--link-color-hover) !important;
+    text-decoration: solid;
+  }
+}
