@@ -20,6 +20,11 @@ def area_payload() -> dict:
         "description": ("Área responsável por TI"),
         "email": "ti@tre-df.jus.br",
         "telefone": "(61) 3210.1234",
+        "endereco": "SCS Quadra 6 Bloco A",
+        "complemento": "Torre 1",
+        "cidade": "Brasília",
+        "estado": "DF",
+        "cep": "70070-912",
     }
 
 

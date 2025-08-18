@@ -2,6 +2,7 @@ import React from 'react';
 import { getBaseUrl } from '@plone/volto/helpers';
 import { Container } from '@plone/components';
 import ContactInfo from '../ContactInfo/ContactInfo';
+import EndereçoInfo from '../ContactInfo/EnderecoInfo';
 import RenderBlocks from '@plone/volto/components/theme/View/RenderBlocks';
 
 const AreaView = (props) => {
@@ -12,6 +13,7 @@ const AreaView = (props) => {
     <Container id="page-document" className="view-wrapper area-view">
       <RenderBlocks {...props} path={path} />
       <ContactInfo content={content} />
+      <EndereçoInfo content={content} />
     </Container>
   );
 };
