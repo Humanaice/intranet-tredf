@@ -2,7 +2,7 @@ import React from 'react';
 import { getBaseUrl } from '@plone/volto/helpers';
 import { Container } from '@plone/components';
 import ContactInfo from '../ContactInfo/ContactInfo';
-import EndereçoInfo from '../ContactInfo/EnderecoInfo';
+import EndereçoInfo from '../EnderecoInfo/EnderecoInfo';
 import RenderBlocks from '@plone/volto/components/theme/View/RenderBlocks';
 
 const AreaView = (props) => {

@@ -1,4 +1,5 @@
 import AreaView from './components/Views/AreaView';
+import PessoaView from './components/Views/PessoaView';
 import './theme/main.scss';
 
 const applyConfig = (config) => {
@@ -23,6 +24,7 @@ const applyConfig = (config) => {
   config.views.contentTypesViews = {
     ...config.views.contentTypesViews,
     Area: AreaView,
+    Pessoa: PessoaView,
   };
   return config;
 };
