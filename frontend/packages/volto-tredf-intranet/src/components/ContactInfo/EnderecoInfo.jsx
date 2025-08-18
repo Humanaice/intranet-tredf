@@ -1,9 +1,8 @@
 import React from 'react';
 import { Container } from '@plone/components';
 
-const EndereçoInfo = ({ content }) => {
+const EnderecoInfo = ({ content }) => {
   const { endereco, complemento, cidade, estado, cep } = content;
-
   return (
     <Container narrow className={'endereco-info'}>
       {endereco && (
@@ -19,7 +18,7 @@ const EndereçoInfo = ({ content }) => {
       {cidade && estado && (
         <Container>
           <span className="cidade">{cidade}</span> {' - '}
-          <span className="estado">{estado}</span>
+          <span className="estado">{estado.token}</span>
         </Container>
       )}
       {cep && (
@@ -31,4 +30,4 @@ const EndereçoInfo = ({ content }) => {
   );
 };
 
-export default EndereçoInfo;
+export default EnderecoInfo;

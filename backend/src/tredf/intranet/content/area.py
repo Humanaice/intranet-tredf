@@ -16,11 +16,6 @@ class IArea(model.Schema):
         fields=[
             "email",
             "telefone",
-            "endereco",
-            "complemento",
-            "cidade",
-            "estado",
-            "cep",
         ],
     )
     email = Email(
@@ -35,30 +30,43 @@ class IArea(model.Schema):
         required=False,
         constraint=validadores.is_valid_telefone,
     )
+
+    model.fieldset(
+        "endereco",
+        _("Endereço"),
+        fields=[
+            "endereco",
+            "complemento",
+            "cidade",
+            "estado",
+            "cep",
+        ],
+    )
     endereco = schema.TextLine(
         title=_("Endereço"),
-        description=_("Informe o endereço da área"),
         required=False,
+        default="",
     )
     complemento = schema.TextLine(
         title=_("Complemento"),
-        description=_("Informe o complemento do endereço"),
+        description=_("Ex. Anexo, Sala"),
         required=False,
+        default="",
     )
     cidade = schema.TextLine(
         title=_("Cidade"),
-        description=_("Informe a cidade da área"),
         required=False,
+        default="",
     )
-    estado = schema.TextLine(
+    estado = schema.Choice(
         title=_("Estado"),
-        description=_("Informe o estado da área"),
+        vocabulary="tredf.intranet.vocabulary.estados",
         required=False,
     )
     cep = schema.TextLine(
         title=_("CEP"),
-        description=_("Informe o CEP da área"),
         required=False,
+        default="",
     )
 
 
