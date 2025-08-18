@@ -55,7 +55,6 @@ class TestPessoa:
             "tredf.intranet.behavior.endereco",
             "plone.leadimage",
             "plone.constraintypes",
-            "volto.preview_image",
         ],
     )
     def test_has_behavior(self, get_behaviors, behavior):

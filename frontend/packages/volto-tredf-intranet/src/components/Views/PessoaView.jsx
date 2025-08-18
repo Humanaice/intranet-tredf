@@ -20,9 +20,15 @@ const PessoaView = (props) => {
           />
         </Container>
       )}
+
       <h1 className="documentFirstHeading">{content.title}</h1>
       {content.description && (
         <p className="documentDescription">{content.description}</p>
+      )}
+      {content.cargo && (
+        <span className={`cargo cargo-${content.cargo.token}`}>
+          {content.cargo.title}
+        </span>
       )}
       <ContactInfo content={content} />
       <EnderecoInfo content={content} />
