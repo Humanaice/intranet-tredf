@@ -86,10 +86,7 @@ class TestArea:
         # Ao criar uma área com descrição, o campo exclude_from_nav deve ser False
         container = self.portal
         with api.env.adopt_roles(["Manager"]):
-            area = api.content.create(
-                container=container,
-                **area_payload,
-            )
+            area = api.content.create(container=container, **area_payload)
         assert area.exclude_from_nav is False
 
     def test_subscriber_added_without_description_value(self, area_payload):
@@ -101,4 +98,42 @@ class TestArea:
             payload = deepcopy(area_payload)
             payload["description"] = ""
             area = api.content.create(container=container, **payload)
+        assert area.exclude_from_nav is True
+
+    def test_subscriber_modified_with_description_value(self, area_payload):
+        from copy import deepcopy
+        from zope.event import notify
+        from zope.lifecycleevent import ObjectModifiedEvent
+
+        # Ao modificar uma área e adicionar descrição, o campo exclude_from_nav deve ser False
+        container = self.portal
+        with api.env.adopt_roles(["Manager"]):
+            payload = deepcopy(area_payload)
+            payload["description"] = ""
+            area = api.content.create(container=container, **payload)
+            # Confirma que exclude_from_nav é True, ou seja, não deve aparecer na navegação
+            assert area.exclude_from_nav is True
+
+            area.description = "Nova descrição para a área"
+            # O notify é uma parte importante pois disparar o evento de modificação
+            notify(ObjectModifiedEvent(area))
+        # Ao modificar a área e adicionar uma descrição, o campo exclude_from_nav deve ser False
+        # Isso significa que a área deve aparecer na navegação
+        assert area.exclude_from_nav is False
+
+    def test_subscriber_modified_without_description_value(self, area_payload):
+        from zope.event import notify
+        from zope.lifecycleevent import ObjectModifiedEvent
+
+        # Ao modificar uma área e remover a descrição, o campo exclude_from_nav deve ser True
+        container = self.portal
+        with api.env.adopt_roles(["Manager"]):
+            area = api.content.create(container=container, **area_payload)
+            # Confirma que exclude_from_nav é False, ou seja, deve aparecer na navegação
+            assert area.exclude_from_nav is False
+
+            # Modifica a área removendo a descrição
+            area.description = ""
+            notify(ObjectModifiedEvent(area))
+        # Ao modificar uma área e remover a descrição, o campo exclude_from_nav deve ser True
         assert area.exclude_from_nav is True
