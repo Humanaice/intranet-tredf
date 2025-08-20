@@ -7,6 +7,7 @@ import AreaInfo from '../AreaInfo/AreaInfo';
 
 const PessoaView = (props) => {
   const { content } = props;
+
   return (
     <Container narrow id="page-document" className="view-wrapper pessoa-view">
       {content.image && (
