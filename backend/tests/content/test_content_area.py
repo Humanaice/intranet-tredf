@@ -81,3 +81,24 @@ class TestArea:
             else:
                 with pytest.raises(Unauthorized):
                     api.content.create(container=self.portal, **area_payload)
+
+    def test_subscriber_added_with_description_value(self, area_payload):
+        # Ao criar uma área com descrição, o campo exclude_from_nav deve ser False
+        container = self.portal
+        with api.env.adopt_roles(["Manager"]):
+            area = api.content.create(
+                container=container,
+                **area_payload,
+            )
+        assert area.exclude_from_nav is False
+
+    def test_subscriber_added_without_description_value(self, area_payload):
+        # Ao criar uma área sem descrição, o campo exclude_from_nav deve ser True
+        from copy import deepcopy
+
+        container = self.portal
+        with api.env.adopt_roles(["Manager"]):
+            payload = deepcopy(area_payload)
+            payload["description"] = ""
+            area = api.content.create(container=container, **payload)
+        assert area.exclude_from_nav is True
