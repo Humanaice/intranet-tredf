@@ -16,6 +16,8 @@
   <include file="permissions.zcml" />
 
   <include package=".behaviors" />
+  <include package=".services" />
+
   <include package=".subscribers" />
   <include package=".controlpanels" />
   <include package=".indexers" />
